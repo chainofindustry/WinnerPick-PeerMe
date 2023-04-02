@@ -25,3 +25,7 @@ If your team members or other wallets related to the team have access to vote, y
 
 ## Usage
 After the Settings section is filled, press **Start** and a random voter's address will be displayed at the end of the process.
+
+If you need additional information, or you want to extend the usage, you may refer to the official API docs from PeerMe available [here](https://api.peerme.io/docs/index.html).
+
+
