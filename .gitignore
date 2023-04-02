@@ -12,3 +12,5 @@ UserSettings/
 *.vsconfig
 *.csproj
 *.sln
+.vs/
+Temp/

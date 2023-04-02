@@ -198,7 +198,14 @@ namespace xUnityTools.WinnerPick
 
             if (request.result != UnityWebRequest.Result.Success)
             {
-                addressText.text = $"{request.url} \n {request.error}";
+                if (request.responseCode == 401)
+                {
+                    addressText.text = $"{request.error} \n Check your API Token";
+                }
+                else
+                {
+                    addressText.text = $"{request.url} \n {request.error}";
+                }
             }
             else
             {
