@@ -26,7 +26,8 @@ namespace xUnityTools.WinnerPick
 
 
         private SavedValues savedValues;
-
+        private List<string> votingAddresses;
+        private int pageNumber;
 
         private void Start()
         {
@@ -126,9 +127,20 @@ namespace xUnityTools.WinnerPick
         private void APIStatusOK(string message)
         {
             addressText.text = "Loading voters data";
-            StartCoroutine(CallAPI($"https://api.peerme.io/v1/proposals/{savedValues.proposalId}/votes", VotersLoaded));
+            pageNumber = 0;
+            votingAddresses = new List<string>();
+            GetWallets();
         }
 
+
+        /// <summary>
+        /// Load voters data
+        /// </summary>
+        void GetWallets()
+        {
+            pageNumber++;
+            StartCoroutine(CallAPI($"https://api.peerme.io/v1/proposals/{savedValues.proposalId}/votes?page={pageNumber}", VotersLoaded));
+        }
 
         /// <summary>
         /// Collect voters data
@@ -136,21 +148,26 @@ namespace xUnityTools.WinnerPick
         /// <param name="message">json containing all voters data</param>
         private void VotersLoaded(string message)
         {
-            List<string> votingAddresses = new List<string>();
             PollData pollData = JsonUtility.FromJson<PollData>(message);
-
             PollOptionData[] pollOptionData = pollData.data;
 
-            //store each user wallet, except the banned ones
-            foreach (PollOptionData data in pollOptionData)
+            //load wallets as long as data exists
+            if (pollOptionData.Length != 0)
             {
-                if (!savedValues.bannedAddresses.Contains(data.user.address))
+                //store each user wallet, except the banned ones
+                foreach (PollOptionData data in pollOptionData)
                 {
-                    votingAddresses.Add(data.user.address);
+                    if (!savedValues.bannedAddresses.Contains(data.user.address))
+                    {
+                        votingAddresses.Add(data.user.address);
+                    }
                 }
+                GetWallets();
             }
-
-            StartCoroutine(PickWinner(votingAddresses));
+            else
+            {
+                StartCoroutine(PickWinner(votingAddresses));
+            }
         }
 
 
@@ -161,6 +178,12 @@ namespace xUnityTools.WinnerPick
         /// <returns></returns>
         private IEnumerator PickWinner(List<string> votingAddresses)
         {
+            if (votingAddresses.Count == 0)
+            {
+                addressText.text = "No addresses found.\nMake sure your settings are correct";
+                yield break;
+            }
+
             foreach (string address in votingAddresses)
             {
                 addressText.text = address;
