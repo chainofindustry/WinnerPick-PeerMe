@@ -11,7 +11,7 @@ First, the settings information needs to be filled out:
 Login into your PeerMe account,  
 Access the right menu -> Settings -> API for Developers -> and generate your unique API token(do not share it).  
 
-**ProposalID:**  
+**Proposal ID:**  
 Go to your proposal page: https://peerme.io/proposals/DNWOLypvwyGY  
 Copy the last part: **DNWOLypvwyGY**. Thats your proposal ID.  
 
