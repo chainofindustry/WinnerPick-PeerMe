@@ -16,7 +16,7 @@ Go to your proposal page: https://peerme.io/proposals/DNWOLypvwyGY
 Copy the last part: **DNWOLypvwyGY**. Thats your proposal ID.  
 
 **Random wallet show time:**  
-All wallets that voted will be displayed on the screen. This is the time to show for each wallet.
+All wallets that voted will be displayed on the screen. This is the time to show for each wallet.  
 If you have a lot of wallets, use small values like 0.05 sec.  
 
 **Excluded wallets:**  
