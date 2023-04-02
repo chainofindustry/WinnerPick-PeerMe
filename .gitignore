@@ -1,0 +1,14 @@
+.vs/WinnerPick/FileContentIndex/6f2745c6-9771-4b69-ad2f-461a4c41e437.vsidx
+.vs/WinnerPick/FileContentIndex/7fcf0e84-f42a-4ddd-bbbb-4f2304154bce.vsidx
+.vs/WinnerPick/FileContentIndex/a7385b45-093b-494e-810f-0a498d3c605a.vsidx
+.vs/WinnerPick/FileContentIndex/e1e6d9ac-806a-4156-9c27-17c1d71790f3.vsidx
+.vs/WinnerPick/FileContentIndex/read.lock
+.vs/WinnerPick/v17/.suo
+Build/
+Library/
+Logs/
+obj/
+UserSettings/
+*.vsconfig
+*.csproj
+*.sln
